@@ -1,0 +1,23 @@
+<div class="container">
+  <!-- Our Message -->
+  <div
+    *ngIf="message.outgoing === true"
+    class="outgoing_msg">
+    <div class="sent_msg">
+      <p>{{ message.text }}</p>
+      <span class="time_date">{{ message.date | date:'HH:mm' }}</span></div>
+  </div>
+
+  <!-- Message from the other person -->
+  <div
+    *ngIf="message.outgoing === false"
+    class="incoming_msg">
+    <div class="incoming_msg_img">
+      <img *ngIf="user.image" style="border-radius: 50%;" src="{{ user.image }}" alt="{{ user.display }}"></div>
+    <div class="received_msg">
+      <div class="received_withd_msg">
+        <p>{{ message.text }}</p>
+        <span class="time_date">{{ message.date | date:'HH:mm' }}</span></div>
+    </div>
+  </div>
+</div>

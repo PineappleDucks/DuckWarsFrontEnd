@@ -1,10 +1,9 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
 import {NotificationService} from '../shared/service/notification.service';
+import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {ChatService} from '../shared/service/chat.service';
 import {ContactService} from '../shared/service/contact.service';
-import {Contact} from '../shared/model/Contact';
+import {Notification} from '../shared/model/Notification';
 
 @Component({
   selector: 'app-header',
@@ -12,40 +11,36 @@ import {Contact} from '../shared/model/Contact';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
-  notification: {};
-  notificationCount: number;
+
+  notificationCount = 0;
   private notificationSub: Subscription;
-  private notificationSub2: Subscription;
 
-  chatName: string;
-
-  constructor(public router: Router,
-              private notificationService: NotificationService,
-              public contactService: ContactService) { }
+  constructor(private notificationService: NotificationService,
+              public router: Router,
+              private contactService: ContactService) { }
 
   ngOnInit() {
-    this.notification = this.notificationService.getNotifications();
-    this.notificationSub = this.notificationService.notificationChange.subscribe(data => {
-      this.notification = data;
+    this.notificationSub = this.notificationService.notificationChange.subscribe( (notification: Notification) => {
+      this.notificationCount = notification.count;
     });
   }
 
   ngOnDestroy(): void {
     this.notificationSub.unsubscribe();
-    this.notificationSub2.unsubscribe();
-  }
-
-  onCall() {
-    this.notificationCount = this.notificationService.getNotificationCount();
-    this.notificationSub2 = this.notificationService.notificationChange.subscribe(data => {
-      this.notificationCount = this.notificationService.getNotificationCount();
-      if (this.notificationCount === 0) {
-        this.notificationCount = null;
-      }
-    });
-
   }
 
   ngAfterViewInit(): void {
+  }
+
+  onReset() {
+    this.contactService.setContactActive(null);
+  }
+
+  onCall() {
+
+  }
+
+  getNotification() {
+    return this.notificationCount !== 0 ? this.notificationCount : null;
   }
 }

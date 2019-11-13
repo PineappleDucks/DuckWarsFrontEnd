@@ -107,6 +107,11 @@ img {
   margin: 0;
   padding: 18px 16px 10px;
   background-color: white;
+  max-height: 100px;
+}
+
+.chat_list img {
+  max-height: 71px;
 }
 
 .inbox_chat {
@@ -145,7 +150,7 @@ img {
 }
 
 .time_date {
-  color: #747474;
+  color: white;  /*#747474;*/
   display: block;
   font-size: 12px;
   margin: 8px 0 0;
@@ -183,8 +188,13 @@ img {
   border: medium none;
   color: #4c4c4c;
   font-size: 15px;
-  min-height: 48px;
   width: 100%;
+}
+
+.input_msg_write {
+  align-items: center;
+  white-space: nowrap;
+  min-height: 64px;
 }
 
 .type_msg {
@@ -192,7 +202,8 @@ img {
   position: relative;
   bottom: 0px;
   background-color: white;
-  padding-bottom: 30px;
+  min-height: 64px;
+  padding: 0 16px;
 }
 
 .msg_send_btn {
@@ -214,13 +225,8 @@ mat-toolbar {
   border-radius: 2px 2px 0px 0px;
 }
 
-.iphone8 {
-  width: 375px;
-  height: 667px;
-}
-
-#phone .vh-correct {
-  height: calc( 812px - 64px ); /* iphone 8 667 */
+.vh-correct {
+  height: calc( 100vh - 64px ); /* iphone 8 667 */
 }
 
 .vh-flex {
@@ -229,52 +235,45 @@ mat-toolbar {
   flex-direction: column;
 }
 
+.vh-flex-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
 .wrapper {
   width: 100vw;
   height: 100vh;
 }
 
-.position-phone {
-  position: fixed;
-  left: 15%;
-  top: 20%;
-}
-
-.star {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  background-color: white;
+body {
+  overflow: hidden
 }
 
 .background-1 {
-  background-position: 45% 50% !important;
-  background-image: url('assets/chatBackground.jpg') !important;
-  background-size: 400% !important;
+  background-position-x: center;
+  background-image: url('assets/images/chat-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.background-2 {
-
+.background-2-choose-jedi {
+  background-position-x: center;
+  background-image: url('assets/images/jedi-logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-.position-option {
-  position: fixed;
-  left: 60%;
-  top: 35%;
+.background-3-choose-sith {
+  background-position-x: center;
+  background-image: url('assets/images/sith-logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-
-body {
-  background-color: #000;
-  background-image: url('/assets/bg-stars.41e916d0.png');
-}
-
-@font-face {
-  font-family: 'StarWars';
-  src: url('/assets/Starjedi.b20d3d2e.ttf');
-}
-
-@font-face {
-  font-family: 'StarWarsTitle';
-  src: url('/assets/Starjedi.b20d3d2e.ttf');
+.background-4-stars {
+  background-position-x: center;
+  background-image: url('assets/images/star-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

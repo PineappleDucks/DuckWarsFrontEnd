@@ -1,24 +1,33 @@
-<mat-toolbar *ngIf="router.url === '/contacts'">
-    <mat-icon routerLink="/">no</mat-icon>
+<mat-toolbar>
+  <!-- / -->
+  <ng-container *ngIf="router.url === '/'">
+    <mat-icon routerLink="/" >no</mat-icon>
+    <span>Home</span>
+    <mat-icon routerLink="/" >no</mat-icon>
+  </ng-container>
+
+  <!-- /chat -->
+  <ng-container *ngIf="router.url === '/chat'">
+    <mat-icon class="cursor" routerLink="/" >keyboard_arrow_left</mat-icon>
     <span>Chats</span>
-    <mat-icon style="cursor: pointer;" routerLink="/credits">share</mat-icon>
-</mat-toolbar>
-<mat-toolbar *ngIf="router.url === '/credits'">
-  <mat-icon
-    [matBadge]="notificationCount"
-    matBadgeColor="warn"
-    style="cursor: pointer;"
-    routerLink="/" (click)="contactService.setActive(null)">keyboard_arrow_left</mat-icon>
-  <span>Credits</span>
-  <mat-icon>no</mat-icon>
-</mat-toolbar>
-<mat-toolbar *ngIf="router.url !== '/contacts' && router.url !== '/credits'">
-  <mat-icon
-    [matBadge]="notificationCount"
-    matBadgeColor="warn"
-    *ngIf="router.url !== '/contacts'"
-    style="cursor: pointer;"
-    routerLink="/" (click)="contactService.setActive(null)">keyboard_arrow_left</mat-icon>
-  <span>Chat</span>
-  <mat-icon *ngIf="router.url !== '/contacts'" style="cursor: pointer;" (click)="onCall()" >call</mat-icon>
+    <mat-icon class="cursor" routerLink="/">dashboard</mat-icon>
+  </ng-container>
+
+  <!-- /chat/:name -->
+  <ng-container *ngIf="router.url.startsWith('/chat/')">
+    <mat-icon
+      [matBadge]="getNotification()"
+      matBadgeColor="warn"
+      class="cursor"
+      routerLink="/chat" (click)="onReset()">keyboard_arrow_left</mat-icon>
+    <span>Chat</span>
+    <mat-icon class="cursor" (click)="onCall()" >call</mat-icon>
+  </ng-container>
+
+  <!-- /choose -->
+  <ng-container *ngIf="router.url === '/choose'">
+    <mat-icon class="cursor" routerLink="/" >keyboard_arrow_left</mat-icon>
+    <span>Scenario</span>
+    <mat-icon routerLink="/">no</mat-icon>
+  </ng-container>
 </mat-toolbar>

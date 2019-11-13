@@ -1,0 +1,34 @@
+div.scenario {
+  width: 100%;
+  height: calc( 50vh - 32px );
+
+  color: #ffd54e;
+  font-weight: bold;
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Aligner-item {
+  max-width: 50%;
+}
+
+.Aligner-item--bottom {
+  align-self: flex-end;
+}
+
+div.scenario div {
+  background-color: rgba(0, 0, 0, 0.20);
+}
+
+div.scenario div h6 {
+  background-color: rgba(0, 0, 0, 0.20);
+  font-size: 45px;
+  line-height: 45px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}

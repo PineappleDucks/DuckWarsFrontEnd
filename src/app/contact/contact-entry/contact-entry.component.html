@@ -1,9 +1,0 @@
-<div class="chat_list" [class.active_chat]="data.isActive">
-  <div class="chat_people">
-    <div class="chat_img"> <img style="border-radius: 50%;" *ngIf="data.owner.image" src="{{ data.owner.image }}" alt="{{ data.owner.firstName + ' ' + data.owner.lastName }}"> </div>
-    <div class="chat_ib">
-      <h5>{{ data.owner.firstName + ' ' + data.owner.lastName }} <span class="chat_date" *ngIf="data.lastMessage">{{ data.lastMessage.date | date:'HH:mm' }}</span></h5>
-      <p [matBadge]="notification[data.owner.display]" matBadgePosition="above before" matBadgeColor="warn" matBadgeOverlap="true" *ngIf="data.lastMessage">{{ data.lastMessage.text }}</p>
-    </div>
-  </div>
-</div>

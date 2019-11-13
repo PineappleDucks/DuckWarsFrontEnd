@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
-import { ChatComponent } from './chat/chat.component';
-import { ChatMessageComponent } from './chat/chat-message/chat-message.component';
-import { HeaderComponent } from './header/header.component';
 import {CoreModule} from './core.module';
 import {MaterialModule} from './material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ChatViewComponent} from './chat/chat-view/chat-view.component';
-import {ChatInputComponent} from './chat/chat-input/chat-input.component';
-import {ContactComponent} from './contact/contact.component';
-import {ContactEntryComponent} from './contact/contact-entry/contact-entry.component';
-import {ContactViewComponent} from './contact/contact-view/contact-view.component';
 import {AppRoutingModule} from './app-routing.module';
-import {ChatLoadingComponent} from './chat/chat-loading/chat-loading.component';
-import {CreditsComponent} from './credits/credits.component';
-import {ChoseSideComponent} from './chose-side/chose-side.component';
+
+import { AppComponent } from './app.component';
+import { ChatComponent } from './page/chat/chat.component';
+import { ChatMessageComponent } from './page/chat/chat-message/chat-message.component';
+import { HeaderComponent } from './header/header.component';
+import {ChatViewComponent} from './page/chat/chat-view/chat-view.component';
+import {ChatInputComponent} from './page/chat/chat-input/chat-input.component';
+import {ContactComponent} from './page/contact/contact.component';
+import {ContactEntryComponent} from './page/contact/contact-entry/contact-entry.component';
+import {ContactViewComponent} from './page/contact/contact-view/contact-view.component';
+import {ChatLoadingComponent} from './page/chat/chat-loading/chat-loading.component';
+import {HomeComponent} from './page/home/home.component';
+import {ChooseComponent} from './page/choose/choose.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,8 @@ import {ChoseSideComponent} from './chose-side/chose-side.component';
     ContactEntryComponent,
     ContactViewComponent,
     ChatLoadingComponent,
-    CreditsComponent,
-    ChoseSideComponent
+    HomeComponent,
+    ChooseComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,8 @@ import {ChoseSideComponent} from './chose-side/chose-side.component';
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

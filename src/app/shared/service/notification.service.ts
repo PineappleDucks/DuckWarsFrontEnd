@@ -1,53 +1,45 @@
-import { Injectable } from '@angular/core';
-import {Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {Notification} from '../model/Notification';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-  notifications: {} = {};
-  count = 0;
-  notificationChange = new Subject<{}>();
+  private notification: Notification = {
+    count: 0,
+    contact: new Map<string, number>()
+  };
+
+  notificationChange = new BehaviorSubject<{}>(this.notification);
 
   constructor() { }
 
-  getNotificationCount() {
-    return this.count;
+  getNotification() {
+    return this.notification;
   }
 
-  getNotifications() {
-    return this.notifications;
+  getNotificationContact(contact: string) {
+    return this.notification.contact.get(contact);
   }
 
-  getNotification(display: string) {
-    return this.notifications[display];
+  getNotificationCount(contact: string) {
+    return this.notification.count;
   }
 
-  addNotification(display: string) {
-    const temp = this.notifications[display];
-    if (temp) {
-      this.notifications[display] = this.notifications[display] + 1;
-    } else {
-      this.notifications[display] = 1;
+  resetNotification(contact: string) {
+    if (this.notification.contact.get(contact)) {
+      this.notification.count = this.notification.count - this.notification.contact.get(contact);
+      this.notification.contact.set(contact, 0);
     }
 
-    this.count++;
-    this.notificationChange.next(this.notifications);
-
-    // this.playNotificationSound();
+    this.notificationChange.next(this.notification);
   }
 
-  resetNotification(display: string) {
-    this.count = this.count - this.notifications[display];
-    this.notifications[display] = null;
-    this.notificationChange.next(this.notifications);
-  }
-
-  playNotificationSound() {
-    const audio = new Audio();
-    audio.src = 'assets/audio/R2D2-do.mp3';
-    audio.load();
-    audio.volume = 0.25;
-    audio.play().then();
+  addNotification(contact: string) {
+    this.notification.count += 1;
+    const count = this.notification.contact.get(contact) ? this.notification.contact.get(contact) + 1 : 1;
+    this.notification.contact.set(contact, count);
+    this.notificationChange.next(this.notification);
   }
 }

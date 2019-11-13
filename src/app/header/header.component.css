@@ -1,6 +1,9 @@
 mat-toolbar {
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
-  height: 84px;
+  height: 64px;
+}
+
+.cursor {
+  cursor: pointer;
 }
