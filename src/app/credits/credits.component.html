@@ -1,0 +1,13 @@
+<div class="chat_list" *ngFor="let c of credits">
+  <div class="chat_people">
+    <div class="chat_img">
+      <mat-icon>{{ c.icon }}</mat-icon>
+    </div>
+    <div class="chat_ib">
+      <h5>{{ c.title }}
+        <span class="chat_date">{{ c.name }}</span>
+      </h5>
+      <p>{{ c.message }}</p>
+    </div>
+  </div>
+</div>

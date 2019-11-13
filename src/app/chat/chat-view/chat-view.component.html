@@ -1,0 +1,12 @@
+<div class="mesgs" *ngIf="chat">
+  <div class="msg_history vh-correct vh-flex">
+    <div style="overflow-x: hidden; overflow-y: auto; margin-bottom: 10px; margin-top: 10px;" #scroll>
+      <app-chat-message *ngFor="let m of chat.messages" [data]="m" [owner]="chat.partner"></app-chat-message>
+
+      <app-chat-loading *ngIf="isLoading"></app-chat-loading>
+    </div>
+
+
+    <app-chat-input style="min-height: 64px;" [id]="chatId" stlye="flex-grow: 1000"></app-chat-input>
+  </div>
+</div>

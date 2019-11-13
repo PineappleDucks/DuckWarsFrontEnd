@@ -1,0 +1,24 @@
+<mat-toolbar *ngIf="router.url === '/contacts'">
+    <mat-icon routerLink="/">no</mat-icon>
+    <span>Chats</span>
+    <mat-icon style="cursor: pointer;" routerLink="/credits">share</mat-icon>
+</mat-toolbar>
+<mat-toolbar *ngIf="router.url === '/credits'">
+  <mat-icon
+    [matBadge]="notificationCount"
+    matBadgeColor="warn"
+    style="cursor: pointer;"
+    routerLink="/" (click)="contactService.setActive(null)">keyboard_arrow_left</mat-icon>
+  <span>Credits</span>
+  <mat-icon>no</mat-icon>
+</mat-toolbar>
+<mat-toolbar *ngIf="router.url !== '/contacts' && router.url !== '/credits'">
+  <mat-icon
+    [matBadge]="notificationCount"
+    matBadgeColor="warn"
+    *ngIf="router.url !== '/contacts'"
+    style="cursor: pointer;"
+    routerLink="/" (click)="contactService.setActive(null)">keyboard_arrow_left</mat-icon>
+  <span>Chat</span>
+  <mat-icon *ngIf="router.url !== '/contacts'" style="cursor: pointer;" (click)="onCall()" >call</mat-icon>
+</mat-toolbar>

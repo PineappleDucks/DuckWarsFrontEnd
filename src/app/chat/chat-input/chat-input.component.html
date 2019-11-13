@@ -1,0 +1,7 @@
+<div class="type_msg">
+  <div class="input_msg_write">
+    <mat-chip-list class="msg_send_btn">
+      <mat-chip *ngFor="let a of actions; let i = index" (click)="onAnswer(a, i)">{{ a.display }}</mat-chip>
+    </mat-chip-list>
+  </div>
+</div>

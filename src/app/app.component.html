@@ -1,0 +1,76 @@
+<!-- http://marvelapp.github.io/devices.css/ -->
+<!-- https://dev.to/christopherkade/developing-the-star-wars-opening-crawl-in-htmlcss-2j9e -->
+
+<div class="wrapper">
+  <div *ngIf="playIntro">
+    <section class="intro">
+      Es war einmal vor langer Zeit in einer weit,<br>weit entfernten Galaxis...
+    </section>
+
+    <section class="logo">
+      <img src="assets/pineapple-ducks.png">
+    </section>
+
+    <section class="chooseSide">
+      <img src="assets/choose-side.png">
+    </section>
+
+    <section class="sithJedi">
+      <img src="assets/sith-jedi.png">
+    </section>
+
+    <!-- Change the text to your liking -->
+    <div id="board">
+      <div id="content">
+        <p id="title">Episode I.NULL</p>
+        <p id="subtitle">{{ 'Duck Wars' | uppercase}}</p>
+        <br>
+        <!-- And make it cheesy ! -->
+        <p>Es herrscht Bürgerkrieg. Das Imperium und die Rebellen schenken sich nichts. Du bist ein noch
+          unbekannter Held auf einer wichtigen Mission. Ganz auf dich alleingestellt, durchstreifst du die Galaxis.<br></p>
+        <p>&nbsp;</p>
+        <p>Auf mysteriöse Weise bist du im Laufe deiner Mission abgestürzt und hast das Bewusstsein verloren. Du wirst wach und kannst dich an nichts mehr erinnern.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="position-phone"
+       style="z-index: 100;"
+       *ngIf="showPhone"
+       [@simpleFadeAnimation]="'in'">
+
+    <div class="marvel-device iphone-x" style="z-index: 2; " id="phone">
+      <div class="notch">
+        <div class="camera"></div>
+        <div class="speaker"></div>
+      </div>
+      <div class="top-bar"></div>
+      <div class="sleep" style="cursor: pointer;" (click)="showPhone = false"></div>
+      <div class="bottom-bar"></div>
+      <div class="volume"></div>
+      <div class="overflow">
+        <div class="shadow shadow--tr"></div>
+        <div class="shadow shadow--tl"></div>
+        <div class="shadow shadow--br"></div>
+        <div class="shadow shadow--bl"></div>
+      </div>
+      <div class="inner-shadow"></div>
+      <div class="screen background-1" style="overflow: hidden; background-position: 45% 50% !important;
+  background-image: url('assets/chatBackground.jpg') !important;
+  background-size: 400% !important; background-color: rgb(177, 87, 0)">
+        <app-header></app-header>
+        <div [@routeAnimations]="o && o.activatedRouteData
+          && o.activatedRouteData['animation']">
+          <router-outlet #o="outlet"></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="position-option" *ngIf="showOption" [@simpleFadeAnimation]="'in'">
+
+
+  </div>
+
+</div>

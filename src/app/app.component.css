@@ -1,0 +1,193 @@
+
+body {
+  margin: 0;
+  background-color: black;
+}
+
+.star {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: white;
+}
+
+/* Set the animation, color, size and hide the text */
+.intro {
+  position: absolute;
+  top: 40%;
+  left: calc(50% - 427px ); /* 35%; 852 427*/
+  z-index: 1;
+  animation: intro 4s ease-out 1s;
+  color: rgb(75, 213, 238);
+  font-weight: 400;
+  font-size: 300%;
+  opacity: 0;
+}
+
+@keyframes intro {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Set the animation & hide the logo */
+.logo {
+  position: fixed;
+  top: 40%;
+  left: calc( 50% - 147px );
+
+  z-index: 1;
+  margin: auto;
+  animation: logo 10s ease-out 6s; /* 693.615px */
+  opacity: 0;
+}
+
+.logo svg {
+  width: inherit;
+}
+
+/* Scale the logo down and maintain it centered */
+@keyframes logo {
+  0% {
+    width: 18em;
+    transform: scale(10);
+  }
+  1% {
+    opacity: 1;
+
+  }
+  50% {
+    opacity: 1;
+    width: 18em;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1);
+    width: 18em;
+  }
+}
+
+p {
+  color: #ffd54e; /*#FFE81F;*/
+}
+
+/* Set the font, lean the board, position it */
+#board {
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+  transform: perspective(300px) rotateX(15deg);
+  transform-origin: 50% 100%;
+  text-align: justify;
+  position: absolute;
+  margin-left: -9em;
+  font-weight: bold;
+  overflow: hidden;
+  font-size: 600%;
+  height: 50em;
+  width: 18em;
+  bottom: 0;
+  left: 50%;
+}
+
+#board:after {
+  position: absolute;
+  content: ' ';
+  bottom: 60%;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+/* Set the scrolling animation and position it */
+#content {
+  animation: scroll 100s linear 14s;
+  position: absolute;
+  top: 100%;
+}
+
+#title{
+  text-align: center;
+}
+
+#subtitle {
+  text-align: center;
+  font-size: 130%;
+}
+
+@keyframes scroll {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -170%;
+  }
+}
+
+.chooseSide {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+
+  z-index: 1;
+  margin: auto;
+  animation: chooseSide 7s ease-out 53s;
+  opacity: 0;
+}
+
+@keyframes chooseSide {
+  0% {
+    transform: scale(0.001);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  85.714% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1);
+    top: 20%;
+  }
+}
+
+@keyframes sithJedi {
+  0% {
+    transform: scale(0.001);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  83.333% {
+    opacity: 1;
+    transform: scale(1.0);
+    top: 27%;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.1);
+    top: 20%;
+  }
+}
+
+.sithJedi {
+  position: fixed;
+  top: 27%;
+  left: 50%;
+
+  z-index: 1;
+  margin: auto;
+  animation: sithJedi 6s ease-out 54s;
+  opacity: 0;
+}
