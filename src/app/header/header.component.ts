@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ContactService} from '../shared/service/contact.service';
 import {Notification} from '../shared/model/Notification';
+import {HelperService} from '../shared/service/helper.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private notificationService: NotificationService,
               public router: Router,
-              private contactService: ContactService) { }
+              private contactService: ContactService,
+              private helperService: HelperService) { }
 
   ngOnInit() {
     this.notificationSub = this.notificationService.notificationChange.subscribe( (notification: Notification) => {
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onCall() {
-
+    this.helperService.openSnackBar('Kein Netz!');
   }
 
   getNotification() {

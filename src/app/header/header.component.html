@@ -1,16 +1,16 @@
 <mat-toolbar>
   <!-- / -->
   <ng-container *ngIf="router.url === '/'">
-    <mat-icon routerLink="/" >no</mat-icon>
+    <mat-icon>no</mat-icon>
     <span>Home</span>
-    <mat-icon routerLink="/" >no</mat-icon>
+    <mat-icon>no</mat-icon>
   </ng-container>
 
   <!-- /chat -->
   <ng-container *ngIf="router.url === '/chat'">
-    <mat-icon class="cursor" routerLink="/" >keyboard_arrow_left</mat-icon>
+    <mat-icon class="cursor" routerLink="/" matRipple matRippleUnbounded="true" matRippleCentered="true" >keyboard_arrow_left</mat-icon>
     <span>Chats</span>
-    <mat-icon class="cursor" routerLink="/">dashboard</mat-icon>
+    <mat-icon>no</mat-icon>
   </ng-container>
 
   <!-- /chat/:name -->
@@ -19,14 +19,14 @@
       [matBadge]="getNotification()"
       matBadgeColor="warn"
       class="cursor"
-      routerLink="/chat" (click)="onReset()">keyboard_arrow_left</mat-icon>
+      routerLink="/chat" (click)="onReset()" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
     <span>Chat</span>
-    <mat-icon class="cursor" (click)="onCall()" >call</mat-icon>
+    <mat-icon class="cursor" (click)="onCall()" matRipple matRippleUnbounded="true" matRippleCentered="true">call</mat-icon>
   </ng-container>
 
   <!-- /choose -->
   <ng-container *ngIf="router.url === '/choose'">
-    <mat-icon class="cursor" routerLink="/" >keyboard_arrow_left</mat-icon>
+    <mat-icon class="cursor" routerLink="/" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
     <span>Scenario</span>
     <mat-icon routerLink="/">no</mat-icon>
   </ng-container>

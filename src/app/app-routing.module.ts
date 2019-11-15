@@ -6,11 +6,11 @@ import {HomeComponent} from './page/home/home.component';
 import {ChooseComponent} from './page/choose/choose.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full', data: {animation: 'Left-to-Right'}},
-  { path: 'chat', component: ContactComponent, data: {animation: 'Left-to-Right'}},
-  { path: 'chat/:name', component: ChatComponent, data: {animation: 'Right-to-Left'}},
-  { path: 'choose', component: ChooseComponent, data: {animation: 'Left-to-Right'}},
-  { path: '**', redirectTo: '/', data: {animation: 'Right-to-Left'} }
+  { path: '', component: HomeComponent, pathMatch: 'full', data: {animation: 'Layer1'}},
+  { path: 'chat', component: ContactComponent, data: {animation: 'Layer2'}},
+  { path: 'chat/:name', component: ChatComponent, data: {animation: 'Layer3'}},
+  { path: 'choose', component: ChooseComponent, data: {animation: 'Layer2'}},
+  { path: '**', redirectTo: '/', data: {animation: 'Layer2'} }
 ];
 
 @NgModule({

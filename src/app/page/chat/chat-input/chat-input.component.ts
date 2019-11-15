@@ -3,6 +3,7 @@ import {ActionsService} from '../../../shared/service/actions.service';
 import {Subscription} from 'rxjs';
 import {Action} from '../../../shared/model/Action';
 import {MessageService} from '../../../shared/service/message.service';
+import {HelperService} from '../../../shared/service/helper.service';
 
 @Component({
   selector: 'app-chat-input',
@@ -14,7 +15,9 @@ export class ChatInputComponent implements OnInit, OnDestroy {
   actions: Action[];
   private actionSub: Subscription;
 
-  constructor(private actionsService: ActionsService, private messageService: MessageService) { }
+  constructor(private actionsService: ActionsService,
+              private messageService: MessageService,
+              private helperService: HelperService) { }
 
   ngOnInit() {
     this.actions = this.actionsService.getActions(this.display);
@@ -37,6 +40,6 @@ export class ChatInputComponent implements OnInit, OnDestroy {
   }
 
   onSend() {
-
+    this.helperService.openSnackBar('Kein Netz!');
   }
 }

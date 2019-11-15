@@ -18,6 +18,7 @@ import {ContactViewComponent} from './page/contact/contact-view/contact-view.com
 import {ChatLoadingComponent} from './page/chat/chat-loading/chat-loading.component';
 import {HomeComponent} from './page/home/home.component';
 import {ChooseComponent} from './page/choose/choose.component';
+import {MatRippleModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {ChooseComponent} from './page/choose/choose.component';
     CoreModule,
     MaterialModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatRippleModule
   ],
   providers: [
   ],

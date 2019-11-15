@@ -164,7 +164,7 @@ img {
 }
 
 .sent_msg p {
-  background: rgba(0,0,0,.87) none repeat scroll 0 0;
+  background: rgb(200, 85, 51) none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0;

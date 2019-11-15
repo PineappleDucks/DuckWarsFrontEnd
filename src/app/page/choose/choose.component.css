@@ -20,11 +20,17 @@ div.scenario {
   align-self: flex-end;
 }
 
-div.scenario div {
+.scenario div {
   background-color: rgba(0, 0, 0, 0.20);
+  transition: all 0.4s;
+  opacity: 1;
 }
 
-div.scenario div h6 {
+.scenario div:hover {
+  opacity: 0;
+}
+
+.scenario div h6 {
   background-color: rgba(0, 0, 0, 0.20);
   font-size: 45px;
   line-height: 45px;
