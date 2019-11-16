@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {CoreModule} from './core.module';
 import {MaterialModule} from './material.module';
 import {AppRoutingModule} from './app-routing.module';
 
@@ -19,6 +18,12 @@ import {ChatLoadingComponent} from './page/chat/chat-loading/chat-loading.compon
 import {HomeComponent} from './page/home/home.component';
 import {ChooseComponent} from './page/choose/choose.component';
 import {MatRippleModule} from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import {HttpClientModule} from '@angular/common/http';
+import {RegisterComponent} from './auth/register/register.component';
+import {LoginComponent} from './auth/login/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,15 +38,19 @@ import {MatRippleModule} from '@angular/material';
     ContactViewComponent,
     ChatLoadingComponent,
     HomeComponent,
-    ChooseComponent
+    ChooseComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    CoreModule,
     MaterialModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatRippleModule
+    MatRippleModule,
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    ReactiveFormsModule
   ],
   providers: [
   ],

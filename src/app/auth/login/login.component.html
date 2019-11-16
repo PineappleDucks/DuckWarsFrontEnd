@@ -1,0 +1,27 @@
+<h2>Anmelden</h2>
+<span>Bitte melde dich mit deinem Account an.</span>
+<form [formGroup]="loginForm" class="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email"
+           [errorStateMatcher]="matcher">
+    <mat-icon matSuffix>email</mat-icon>
+    <mat-error
+      *ngIf="loginForm.get('email').hasError('email') && !loginForm.get('email').hasError('required')">
+      Bitte geben Sie eine gültige E-Mail-Adresse ein
+    </mat-error>
+    <mat-error
+      *ngIf="loginForm.get('email').hasError('required') && !loginForm.get('email').hasError('email')">
+      Email ist erforderlich
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="password" placeholder="Passwort" formControlName="password"
+           [errorStateMatcher]="matcher">
+    <mat-icon matSuffix>lock</mat-icon>
+    <mat-error *ngIf="loginForm.get('password').hasError('required')">
+      Passwort ist erforderlich
+    </mat-error>
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Authenticate</button>
+</form>
+<span><a routerLink="/register">Falls Sie noch keinen Benutzeraccount haben, können Sie sich hier registrieren</a></span>

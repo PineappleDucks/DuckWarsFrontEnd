@@ -1,10 +1,12 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {NotificationService} from '../shared/service/notification.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 import {Subscription} from 'rxjs';
+
+import {NotificationService} from '../shared/service/notification.service';
 import {ContactService} from '../shared/service/contact.service';
-import {Notification} from '../shared/model/Notification';
 import {HelperService} from '../shared/service/helper.service';
+
+import {Notification} from '../shared/model/Notification';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +18,12 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   notificationCount = 0;
   private notificationSub: Subscription;
 
+  title: string;
+  animation: string;
+
   constructor(private notificationService: NotificationService,
               public router: Router,
+              private route: ActivatedRoute,
               private contactService: ContactService,
               private helperService: HelperService) { }
 
@@ -25,6 +31,15 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
     this.notificationSub = this.notificationService.notificationChange.subscribe( (notification: Notification) => {
       this.notificationCount = notification.count;
     });
+
+    this.router.events.subscribe((data) => {
+      if (data instanceof RoutesRecognized) {
+        const d =  data.state.root.firstChild.data;
+        this.title = d.title;
+        this.animation = d.animation;
+      }
+    });
+
   }
 
   ngOnDestroy(): void {
@@ -39,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onCall() {
-    this.helperService.openSnackBar('Kein Netz!');
+    // this.helperService.openSnackBar('Kein Netz!');
   }
 
   getNotification() {

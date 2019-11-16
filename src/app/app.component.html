@@ -1,4 +1,7 @@
+<mat-progress-bar *ngIf="isLoading" color="warn" mode="indeterminate" class="pageLoadingIndicator"></mat-progress-bar>
+
 <app-header></app-header>
+
 <div [@routeAnimations]="o && o.activatedRouteData
   && o.activatedRouteData['animation']">
   <router-outlet #o="outlet"></router-outlet>

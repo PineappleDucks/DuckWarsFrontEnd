@@ -1,20 +1,7 @@
 <mat-toolbar>
-  <!-- / -->
-  <ng-container *ngIf="router.url === '/'">
-    <mat-icon>no</mat-icon>
-    <span>Home</span>
-    <mat-icon>no</mat-icon>
-  </ng-container>
 
-  <!-- /chat -->
-  <ng-container *ngIf="router.url === '/chat'">
-    <mat-icon class="cursor" routerLink="/" matRipple matRippleUnbounded="true" matRippleCentered="true" >keyboard_arrow_left</mat-icon>
-    <span>Chats</span>
-    <mat-icon>no</mat-icon>
-  </ng-container>
-
-  <!-- /chat/:name -->
-  <ng-container *ngIf="router.url.startsWith('/chat/')">
+  <!-- Layer 3 back button, text and phone button -->
+  <ng-container *ngIf="animation === 'Layer3' && router.url.startsWith('/chat/')">
     <mat-icon
       [matBadge]="getNotification()"
       matBadgeColor="warn"
@@ -24,10 +11,17 @@
     <mat-icon class="cursor" (click)="onCall()" matRipple matRippleUnbounded="true" matRippleCentered="true">call</mat-icon>
   </ng-container>
 
-  <!-- /choose -->
-  <ng-container *ngIf="router.url === '/choose'">
+  <!-- Layer 2 only back button and text -->
+  <ng-container *ngIf="animation === 'Layer1'">
+    <mat-icon></mat-icon>
+    <span>{{ title }}</span>
+    <mat-icon></mat-icon>
+  </ng-container>
+
+  <!-- Layer 1 only text -->
+  <ng-container *ngIf="animation === 'Layer2'">
     <mat-icon class="cursor" routerLink="/" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
-    <span>Scenario</span>
-    <mat-icon routerLink="/">no</mat-icon>
+    <span>{{ title }}</span>
+    <mat-icon></mat-icon>
   </ng-container>
 </mat-toolbar>

@@ -40,6 +40,6 @@ export class ChatInputComponent implements OnInit, OnDestroy {
   }
 
   onSend() {
-    this.helperService.openSnackBar('Kein Netz!');
+    // this.helperService.openSnackBar('Kein Netz!');
   }
 }
