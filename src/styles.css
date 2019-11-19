@@ -1,7 +1,56 @@
+.container-small {
+  max-width: 780px;
+  margin: auto;
+}
+
+.container-padding {
+  padding: 20px;
+}
+
 .container {
   max-width: 1170px;
   margin: auto;
 }
+
+.container-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-flex-element {
+  padding-top: calc( 50% - 30px );
+  width: calc( 50% - 30px );
+  position: relative;
+  margin: 15px;
+}
+
+.container-flex-element button {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+a {
+  color: #c85533;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c85533;
+  text-decoration: none;
+}
+
 
 img {
   max-width: 100%;
@@ -164,13 +213,13 @@ img {
 }
 
 .sent_msg p {
-  background: rgb(200, 85, 51) none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0;
   color: #fff;
   padding: 5px 10px 5px 12px;
   width: 100%;
+  background-color: #c85533;
 }
 
 .outgoing_msg {

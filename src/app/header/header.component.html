@@ -1,27 +1,41 @@
 <mat-toolbar>
 
-  <!-- Layer 3 back button, text and phone button -->
-  <ng-container *ngIf="animation === 'Layer3' && router.url.startsWith('/chat/')">
-    <mat-icon
-      [matBadge]="getNotification()"
-      matBadgeColor="warn"
-      class="cursor"
-      routerLink="/chat" (click)="onReset()" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
-    <span>Chat</span>
-    <mat-icon class="cursor" (click)="onCall()" matRipple matRippleUnbounded="true" matRippleCentered="true">call</mat-icon>
+  <ng-container *ngIf="isAuth">
+    <!-- Layer 3 back button, text and phone button -->
+    <ng-container *ngIf="animation === 'Layer3' && router.url.startsWith('/chat/')">
+      <mat-icon
+        [matBadge]="getNotification()"
+        matBadgeColor="warn"
+        class="cursor"
+        routerLink="/chat" (click)="onReset()" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
+      <span>Chat</span>
+      <mat-icon class="cursor" (click)="onCall()" matRipple matRippleUnbounded="true" matRippleCentered="true">call</mat-icon>
+    </ng-container>
+
+    <!-- Layer 1 only text -->
+    <ng-container *ngIf="animation === 'Layer1'">
+      <mat-icon></mat-icon>
+      <span>{{ title }}</span>
+      <mat-icon></mat-icon>
+    </ng-container>
+
+    <!-- Layer 2 only back button and text -->
+    <ng-container *ngIf="animation === 'Layer2'">
+      <mat-icon class="cursor" routerLink="/" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
+      <span>{{ title }}</span>
+      <mat-icon></mat-icon>
+    </ng-container>
   </ng-container>
 
-  <!-- Layer 2 only back button and text -->
-  <ng-container *ngIf="animation === 'Layer1'">
-    <mat-icon></mat-icon>
-    <span>{{ title }}</span>
-    <mat-icon></mat-icon>
+  <ng-container *ngIf="!isAuth">
+    <!-- Only Text -->
+    <ng-container>
+      <mat-icon></mat-icon>
+      <span>{{ title }}</span>
+      <mat-icon></mat-icon>
+    </ng-container>
+
+
   </ng-container>
 
-  <!-- Layer 1 only text -->
-  <ng-container *ngIf="animation === 'Layer2'">
-    <mat-icon class="cursor" routerLink="/" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
-    <span>{{ title }}</span>
-    <mat-icon></mat-icon>
-  </ng-container>
 </mat-toolbar>

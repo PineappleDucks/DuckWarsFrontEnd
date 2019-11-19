@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 import {Subscription} from 'rxjs';
 
@@ -7,13 +7,14 @@ import {ContactService} from '../shared/service/contact.service';
 import {HelperService} from '../shared/service/helper.service';
 
 import {Notification} from '../shared/model/Notification';
+import {AuthService} from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   notificationCount = 0;
   private notificationSub: Subscription;
@@ -21,11 +22,15 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   title: string;
   animation: string;
 
+  isAuth: boolean;
+  private isAuthSub: Subscription;
+
   constructor(private notificationService: NotificationService,
               public router: Router,
               private route: ActivatedRoute,
               private contactService: ContactService,
-              private helperService: HelperService) { }
+              private helperService: HelperService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.notificationSub = this.notificationService.notificationChange.subscribe( (notification: Notification) => {
@@ -40,13 +45,15 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     });
 
+    this.isAuthSub = this.authService.user.subscribe( user => {
+      this.isAuth = !!user;
+    });
+
   }
 
   ngOnDestroy(): void {
     this.notificationSub.unsubscribe();
-  }
-
-  ngAfterViewInit(): void {
+    this.isAuthSub.unsubscribe();
   }
 
   onReset() {
