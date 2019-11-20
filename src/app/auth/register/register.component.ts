@@ -17,6 +17,9 @@ export class RegisterComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   matcherPassword = new MyErrorStateMatcherPassword();
 
+  hidePassword = true;
+  hidePasswordConfirm = true;
+
   registerForm = new FormGroup({
     email: new FormControl( '', [Validators.required, Validators.email] ),
     username: new FormControl( '', [Validators.required] ),
@@ -47,13 +50,13 @@ export class RegisterComponent implements OnInit {
         this.loadingIndicator.setLoading(false);
         this.registerForm.reset();
         this.router.navigate(['/auth']);
-        this.helperService.openSnackBar('Registration complete! Please confirm your E-Mail!', 'Close');
+        this.helperService.openSnackBar('Registrierung abgeschlossen!', 'Schließen');
       },
       error => {
         this.registerForm.get('password').reset();
         this.registerForm.get('passwordConfirm').reset();
         this.loadingIndicator.setLoading(false);
-        this.helperService.openSnackBar(error, 'Close');
+        this.helperService.openSnackBar(error, 'Schließen');
       }
     );
   }

@@ -22,17 +22,17 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Passwort" formControlName="password"
+      <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Passwort" formControlName="password"
              [errorStateMatcher]="matcher">
-      <mat-icon matSuffix>lock</mat-icon>
+      <mat-icon class="cursor" (click)="hidePassword = !hidePassword" matSuffix>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="registerForm.get('password').hasError('required')">
         Passwort ist erforderlich
       </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Passwort bestätigen" formControlName="passwordConfirm"
+      <input matInput [type]="matcherPassword ? 'password' : 'text'" placeholder="Passwort bestätigen" formControlName="passwordConfirm"
              [errorStateMatcher]="matcherPassword">
-      <mat-icon matSuffix>lock</mat-icon>
+      <mat-icon class="cursor" (click)="hidePasswordConfirm = !hidePasswordConfirm" matSuffix>{{hidePasswordConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="registerForm.get('passwordConfirm').hasError('required')">
         Bitte bestätigen Sie Ihr Passwort
       </mat-error>

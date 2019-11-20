@@ -3,6 +3,9 @@ mat-toolbar {
   justify-content: space-between;
   height: 64px;
   border-right: 0px;
+
+  position: fixed;
+  z-index: 20;
 }
 
 .cursor {

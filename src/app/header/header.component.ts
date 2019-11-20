@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.isAuthSub = this.authService.user.subscribe( user => {
       this.isAuth = !!user;
+      this.isAuth = true;
     });
 
   }

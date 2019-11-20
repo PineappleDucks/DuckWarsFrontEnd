@@ -165,41 +165,41 @@ $mat-primary: (
 $theme-primary: mat-palette($mat-primary, main, lighter, darker);
 
 body {
-  --accent-color: #ededed;
-  --accent-lighter-color: #fafafa;
-  --accent-darker-color: #e5e5e5;
-  --text-accent-color: #{$dark-primary-text};
+  --accent-color: #797979;
+  --accent-lighter-color: #d7d7d7;
+  --accent-darker-color: #5c5c5c;
+  --text-accent-color: #{$light-primary-text};
   --text-accent-lighter-color: #{$dark-primary-text};
-  --text-accent-darker-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$light-primary-text};
 }
 
 $mat-accent: (
-  main: #ededed,
-  lighter: #fafafa,
-  darker: #e5e5e5,
-  200: #ededed, // For slide toggle,
+  main: #797979,
+  lighter: #d7d7d7,
+  darker: #5c5c5c,
+  200: #797979, // For slide toggle,
   contrast : (
-    main: $dark-primary-text,
+    main: $light-primary-text,
     lighter: $dark-primary-text,
-    darker: $dark-primary-text,
+    darker: $light-primary-text,
   )
 );
 $theme-accent: mat-palette($mat-accent, main, lighter, darker);
 
 body {
-  --warn-color: #c00000;
-  --warn-lighter-color: #ecb3b3;
-  --warn-darker-color: #aa0000;
+  --warn-color: #ff0000;
+  --warn-lighter-color: #ffb3b3;
+  --warn-darker-color: #ff0000;
   --text-warn-color: #{$light-primary-text};
   --text-warn-lighter-color: #{$dark-primary-text};
   --text-warn-darker-color: #{$light-primary-text};
 }
 
 $mat-warn: (
-  main: #c00000,
-  lighter: #ecb3b3,
-  darker: #aa0000,
-  200: #c00000, // For slide toggle,
+  main: #ff0000,
+  lighter: #ffb3b3,
+  darker: #ff0000,
+  200: #ff0000, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -208,8 +208,8 @@ $mat-warn: (
 );
 $theme-warn: mat-palette($mat-warn, main, lighter, darker);;
 
-$theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
-$altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+$theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+$altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 
 // Theme Init
 @include angular-material-theme($theme);

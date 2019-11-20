@@ -96,10 +96,6 @@ export class AuthService {
       .pipe(
         catchError(this.handleError), tap(
           resData => {
-            this.http.post<{}>(this.api + 'users/' + resData.userId + '/verify', {}).subscribe(() => {
-                console.log('confirm email');
-              }
-            );
           }
         )
       );
@@ -133,7 +129,7 @@ export class AuthService {
   private handleError(errorRes: HttpErrorResponse) {
     console.log(errorRes);
 
-    const errorMessage = 'An unknown error occured!';
+    const errorMessage = 'Keine Verbindung zum Server!';
 
     if (!errorRes.error || !errorRes.error.error) {
       return throwError(errorMessage);

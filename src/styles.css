@@ -1,15 +1,17 @@
 .container-small {
   max-width: 780px;
   margin: auto;
+  overflow-y: auto;
 }
 
 .container-padding {
-  padding: 20px;
+  padding: 10px;
 }
 
 .container {
   max-width: 1170px;
   margin: auto;
+  overflow-y: auto;
 }
 
 .container-flex {
@@ -19,14 +21,25 @@
   justify-content: space-between;
 }
 
-.container-flex-element {
-  padding-top: calc( 50% - 30px );
-  width: calc( 50% - 30px );
-  position: relative;
-  margin: 15px;
+.container-padding .container-flex-element-full {
+  margin-bottom: 10px;
 }
 
-.container-flex-element button {
+.container-flex-element {
+  padding-top: calc( 50% - 10px );
+  width: calc( 50% - 10px );
+  position: relative;
+  margin: 5px;
+}
+
+.container-flex-element-full {
+  padding-top: calc( 50% - 10px );
+  width: calc( 100% - 10px );
+  position: relative;
+  margin: 5px;
+}
+
+.container-flex-element .box, .container-flex-element-full .box {
   width: 100%;
   height: 100%;
 
@@ -155,8 +168,8 @@ img {
   border-bottom: 1px solid #c4c4c4;
   margin: 0;
   padding: 18px 16px 10px;
-  background-color: white;
   max-height: 100px;
+  min-height: 80px;
 }
 
 .chat_list img {
@@ -295,10 +308,6 @@ mat-toolbar {
   height: 100vh;
 }
 
-body {
-  overflow: hidden
-}
-
 .background-1 {
   background-position-x: center;
   background-image: url('assets/images/chat-background.jpg');
@@ -326,3 +335,32 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.background-5-scenario-1 {
+  background-position-x: center;
+  background-image: url('assets/images/background/scenario-1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.background-6-scenario-2 {
+  background-position-x: center;
+  background-image: url('assets/images/background/scenario-2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.background-7-scenario-3 {
+  background-position-x: center;
+  background-image: url('assets/images/background/scenario-3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.background-8-scenario-4 {
+  background-position-x: center;
+  background-image: url('assets/images/background/scenario-4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
