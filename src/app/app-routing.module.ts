@@ -12,7 +12,7 @@ import {NoAuthGuard} from './auth/no-auth.guard';
 import {AuthGuard} from './auth/auth.guard';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full', data: {animation: 'Layer1', title: 'Startseite'}, canActivate: [AuthGuard]},
+  { path: '', component: HomeComponent, pathMatch: 'full', data: {animation: 'Layer1', title: 'PineApple Wars'}, canActivate: [AuthGuard]},
   { path: 'chat', component: ContactComponent, data: {animation: 'Layer2', title: 'Chats'}, canActivate: [AuthGuard]},
   { path: 'chat/:name', component: ChatComponent, data: {animation: 'Layer3', title: 'Chat :name'}, canActivate: [AuthGuard]},
   { path: 'choose', component: ChooseComponent, data: {animation: 'Layer2', title: 'Szenario'}, canActivate: [AuthGuard]},

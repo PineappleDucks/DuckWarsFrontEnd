@@ -3,8 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  api: 'http://10.10.20.6:4300/'
+  production: true,
+
+  api: 'http://10.10.20.6:4300/',
+
+  initRoute: '',
+  sendMessageRoute: '',
+  getPossibleResponsesRoute: '',
+
+  loginRoute: '',
+  registerRoute: ''
 };
 
 /*

@@ -6,7 +6,6 @@ import {BehaviorSubject, throwError} from 'rxjs';
 
 import {AuthResponseData} from '../shared/model/AuthResponseData';
 import {User} from '../shared/model/user';
-import {UserResponse} from '../shared/model/UserResponse';
 
 import {environment} from '../../environments/environment';
 
@@ -15,7 +14,11 @@ import {environment} from '../../environments/environment';
 })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+
   private api = environment.api;
+  private loginRoute = environment.loginRoute;
+  private registerRoute = environment.registerRoute;
+
   private tokenTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -23,7 +26,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<AuthResponseData>(
-      this.api + 'users/login',
+      this.api + this.loginRoute,
       {
         email,
         password
@@ -38,23 +41,15 @@ export class AuthService {
   }
 
   logout() {
-    return this.http.post<AuthResponseData>(
-      this.api + 'users/logout', {})
-      .pipe(
-        catchError(this.handleError), tap(
-          () => {
-            this.user.next(null);
+    this.user.next(null);
 
-            // localStorage.clear();
-            localStorage.removeItem('userData');
+    // localStorage.clear();
+    localStorage.removeItem('userData');
 
-            if (this.tokenTimer) {
-              clearTimeout(this.tokenTimer);
-            }
-            this.tokenTimer = null;
-          }
-        )
-      );
+    if (this.tokenTimer) {
+      clearTimeout(this.tokenTimer);
+    }
+    this.tokenTimer = null;
   }
 
   autoLogin() {
@@ -87,7 +82,7 @@ export class AuthService {
 
   register(email: string, password: string, username?: string) {
     return this.http.post<AuthResponseData>(
-      this.api + 'Users',
+      this.api + this.registerRoute,
       {
         email,
         password,
@@ -109,21 +104,6 @@ export class AuthService {
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
-
-    this.loadAdditionalData();
-  }
-
-  private loadAdditionalData() {
-    const user = this.user.value;
-    this.http.get<UserResponse>(this.api + 'users/' + user.id + '/').subscribe(
-      response => {
-        user.username = response.username;
-        user.description = response.description;
-
-        this.user.next(user);
-        localStorage.setItem('userData', JSON.stringify(user));
-      }
-    );
   }
 
   private handleError(errorRes: HttpErrorResponse) {

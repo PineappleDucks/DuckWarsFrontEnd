@@ -11,6 +11,7 @@ import {LoadingIndicatorService} from './shared/service/loading-indicator.servic
 import {AuthService} from './auth/auth.service';
 import {Subscription} from 'rxjs';
 import {environment} from '../environments/environment';
+import {GameService} from './shared/service/game.service';
 
 @Component({
   selector: 'app-root',
@@ -24,12 +25,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
   private loadingSub: Subscription;
   isLoading: true;
 
-  constructor(private contactService: ContactService,
-              private messageService: MessageService,
-              private actionService: ActionsService,
-              private swPush: SwPush,
+  constructor(private swPush: SwPush,
               private pushService: PushService,
               private authService: AuthService,
+              private gameService: GameService,
               private loadingIndicator: LoadingIndicatorService) { }
 
   ngOnInit(): void {
@@ -38,63 +37,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.isLoading = state;
     });
 
+    // this.isLoading = true;
 
-    // test data
-
-    this.contactService.addContact( {
-      display: 'D2R2',
-      image: 'assets/images/profile-icon/D2R2.png',
-      firstName: 'D2R2',
-      lastName: ''
-    });
-
-    this.contactService.addContact( {
-      display: 'stormtrooper',
-      image: 'assets/images/profile-icon/Stormtrooper.png',
-      firstName: 'Stormtrooper',
-      lastName: ''
-    });
-
-    this.messageService.addMessage('D2R2', {
-      text: 'Test',
-      outgoing: false,
-      date: new Date()
-    });
-
-    this.messageService.addMessage('D2R2', {
-      text: 'Test 2',
-      outgoing: true,
-      date: new Date()
-    });
-
-    this.messageService.addMessage('D2R2', {
-      text: 'Test',
-      outgoing: false,
-      date: new Date()
-    });
-
-    this.messageService.addMessage('D2R2', {
-      text: 'Test 2',
-      outgoing: true,
-      date: new Date()
-    });
-
-    this.messageService.addMessage('D2R2', {
-      text: 'Test',
-      outgoing: false,
-      date: new Date()
-    });
-
-    this.messageService.addMessage('D2R2', {
-      text: 'Test 2',
-      outgoing: true,
-      date: new Date()
-    });
-
-    this.actionService.addAction('D2R2', {
-      display: 'Action 1',
-      value: 'Value 1'
-    });
+    this.gameService.init();
   }
 
   ngOnDestroy(): void {

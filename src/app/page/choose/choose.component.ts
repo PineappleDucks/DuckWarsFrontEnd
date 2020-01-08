@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GameService} from '../../shared/service/game.service';
 
 @Component({
   selector: 'app-choose',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChooseComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gameService: GameService) { }
 
   ngOnInit() {
   }
 
+  onSelect(side: string) {
+    this.gameService.chooseScenario(side);
+  }
 }
