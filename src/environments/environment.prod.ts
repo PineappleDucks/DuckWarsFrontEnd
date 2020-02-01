@@ -1,12 +1,11 @@
 export const environment = {
   production: true,
 
-  api: 'http://10.10.20.6:4300/',
+  api: 'http://localhost:8080/',
 
-  initRoute: '',
-  sendMessageRoute: '',
-  getPossibleResponsesRoute: '',
+  initRoute: 'web/init',
+  messageRoute: 'web/chat',
 
-  loginRoute: '',
-  registerRoute: ''
+  loginRoute: 'web/login',
+  registerRoute: 'web/register'
 };

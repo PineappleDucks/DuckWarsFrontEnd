@@ -26,14 +26,14 @@
 }
 
 .container-flex-element {
-  padding-top: calc( 50% - 10px );
+  padding-top: 300px;
   width: calc( 50% - 10px );
   position: relative;
   margin: 5px;
 }
 
 .container-flex-element-full {
-  padding-top: calc( 50% - 10px );
+  padding-top: 300px; /* calc( 30vh - 57px ) */
   width: calc( 100% - 10px );
   position: relative;
   margin: 5px;
@@ -48,6 +48,13 @@
   left: 0;
   bottom: 0;
   right: 0;
+
+  text-align: center;
+  color: #ffd54e;
+  text-shadow: 4px 4px #000000;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 100px 60px;
 }
 
 mat-form-field {
@@ -55,12 +62,12 @@ mat-form-field {
 }
 
 a {
-  color: #c85533;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 a:hover {
-  color: #c85533;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
@@ -308,59 +315,36 @@ mat-toolbar {
   height: 100vh;
 }
 
-.background-1 {
+.background-container {
   background-position-x: center;
-  background-image: url('assets/images/chat-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.background-2-choose-jedi {
-  background-position-x: center;
-  background-image: url('assets/images/jedi-logo.png');
-  background-repeat: no-repeat;
-  background-size: contain;
+.background-trooper {
+  background-image: url('assets/images/background/background-trooper.jpg');
 }
 
-.background-3-choose-sith {
-  background-position-x: center;
-  background-image: url('assets/images/sith-logo.png');
-  background-repeat: no-repeat;
-  background-size: contain;
+.background-deathstar {
+  background-image: url('assets/images/background/background-deathstar.jpg');
 }
 
-.background-4-stars {
-  background-position-x: center;
-  background-image: url('assets/images/star-background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+.background-goodbad {
+  background-image: url('assets/images/background/background-goodbad.jpg');
 }
 
-.background-5-scenario-1 {
-  background-position-x: center;
-  background-image: url('assets/images/background/scenario-1.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+.background-atat {
+  background-image: url('assets/images/background/backgorund-atat.jpg');
 }
 
-.background-6-scenario-2 {
-  background-position-x: center;
-  background-image: url('assets/images/background/scenario-2.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+.background-planet {
+  background-image: url('assets/images/background/background-planet.jpg');
 }
 
-.background-7-scenario-3 {
-  background-position-x: center;
-  background-image: url('assets/images/background/scenario-3.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+.background-atat-2 {
+  background-image: url('assets/images/background/background-atat-2.jpg');
 }
 
-.background-8-scenario-4 {
-  background-position-x: center;
-  background-image: url('assets/images/background/scenario-4.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+.background-chat {
+  background-image: url('assets/images/background/background-chat.jpg');
 }
-

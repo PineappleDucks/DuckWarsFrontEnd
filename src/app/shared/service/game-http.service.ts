@@ -9,8 +9,7 @@ import {Message} from '../model/Message';
 export class GameHttpService {
   private api = environment.api;
   private initRoute = environment.initRoute;
-  private sendMessageRoute = environment.sendMessageRoute;
-  private getPossibleResponsesRoute = environment.getPossibleResponsesRoute;
+  private messageRoute = environment.messageRoute;
 
   constructor(private http: HttpClient) { }
 
@@ -18,19 +17,13 @@ export class GameHttpService {
   init(side: string) {
     const params = new HttpParams().set('side', side);
 
-    console.log('get: ' + this.api + this.initRoute);
-    return this.http.get(this.api + this.initRoute, { params });
+    console.log('post: ' + this.api + this.initRoute);
+    return this.http.post(this.api + this.initRoute, { params });
   }
 
   // github nachrichtSenden
-  sendMessage(message: Message) {
-    console.log('post: ' + this.api + this.sendMessageRoute);
-    return this.http.post(this.api + this.sendMessageRoute, message);
-  }
-
-  // github getMoeglicheAntworten
-  getPossibleResponses(message: Message) {
-    console.log('post: ' + this.api + this.getPossibleResponsesRoute);
-    return this.http.post(this.api + this.getPossibleResponsesRoute, message);
+  message(message: Message) {
+    console.log('post: ' + this.api + this.messageRoute);
+    return this.http.post(this.api + this.messageRoute, message);
   }
 }

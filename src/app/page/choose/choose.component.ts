@@ -14,6 +14,6 @@ export class ChooseComponent implements OnInit {
   }
 
   onSelect(side: string) {
-    this.gameService.chooseScenario(side);
+    // this.gameService.chooseScenario(side);
   }
 }

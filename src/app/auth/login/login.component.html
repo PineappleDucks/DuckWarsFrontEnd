@@ -1,17 +1,12 @@
 <div class="container-small container-padding">
-  <span>Bitte melde dich mit deinem Account an.</span>
+  <span style="margin-bottom: 10px; display: block">Bitte melde dich mit deinem Account an.</span>
   <form [formGroup]="loginForm" class="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <input matInput placeholder="Email" formControlName="email"
+      <input matInput placeholder="Benutzername" formControlName="username"
              [errorStateMatcher]="matcher">
-      <mat-icon matSuffix>email</mat-icon>
       <mat-error
-        *ngIf="loginForm.get('email').hasError('email') && !loginForm.get('email').hasError('required')">
-        Bitte geben Sie eine gültige E-Mail-Adresse ein
-      </mat-error>
-      <mat-error
-        *ngIf="loginForm.get('email').hasError('required') && !loginForm.get('email').hasError('email')">
-        Email ist erforderlich
+        *ngIf="loginForm.get('username').hasError('required')">
+        Username ist erforderlich
       </mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -24,5 +19,5 @@
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Anmelden</button>
   </form>
-  <span style="margin-top: 20px; display: block;"><a routerLink="/register">Falls Sie noch keinen Benutzeraccount haben, können Sie sich hier registrieren</a></span>
+  <span style="margin-top: 20px; display: block;"><small><a style="cursor: pointer" (click)="onRegister()">Du hast noch keinen Account? Dann registeire dich hier!</a></small></span>
 </div>

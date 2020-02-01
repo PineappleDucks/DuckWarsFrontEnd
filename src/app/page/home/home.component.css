@@ -1,0 +1,29 @@
+.container-header {
+  text-align: center;
+  font-size: 50px;
+
+  margin-top: 22vh;
+  margin-bottom: 22vh;
+}
+
+.container-button {
+  /*height: 20vh;*/
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.container-subtitle {
+  display: table;
+  width: 80%;
+
+  height: 20vh;
+
+  margin-left: 10%;
+  margin-right: 10%;
+
+  padding: 10%;
+
+  text-align: center;
+
+}

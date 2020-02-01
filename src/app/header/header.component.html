@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z2">
+<mat-toolbar class="mat-elevation-z2" style="z-index: 10;">
 
   <ng-container *ngIf="isAuth">
     <!-- Layer 3 back button, text and phone button -->
@@ -21,7 +21,7 @@
 
     <!-- Layer 2 only back button and text -->
     <ng-container *ngIf="animation === 'Layer2'">
-      <mat-icon class="cursor" routerLink="/" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
+      <mat-icon class="cursor" routerLink="/landing" matRipple matRippleUnbounded="true" matRippleCentered="true">keyboard_arrow_left</mat-icon>
       <span>{{ title }}</span>
       <mat-icon></mat-icon>
     </ng-container>

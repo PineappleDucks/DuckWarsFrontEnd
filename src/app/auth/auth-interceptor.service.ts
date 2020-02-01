@@ -20,7 +20,7 @@ export class AuthInterceptorService implements HttpInterceptor {
           if (!user) {
             return next.handle(req);
           }
-          const modifiedReq = req.clone({ headers: req.headers.append('token', user.token) });
+          const modifiedReq = req.clone({ headers: req.headers.append('jsessionid', user.token) });
           return next.handle(modifiedReq);
         }
       ), catchError(err => {
@@ -29,12 +29,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
           this.helperService.openSnackBar(errorMessage, 'Close');
         } else {
-          if (err.error && err.error.error.code === 'TOKEN_EXPIRES') {
-            this.authService.logout();
-            return throwError(err);
-          } else {
-            return throwError(err);
-          }
+          return throwError(err);
         }
       })
     );

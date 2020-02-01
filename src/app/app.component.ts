@@ -33,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   ngOnInit(): void {
     this.authService.autoLogin();
+
     this.loadingSub = this.loadingIndicator.event.subscribe( state => {
       this.isLoading = state;
     });

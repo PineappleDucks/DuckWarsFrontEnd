@@ -1,9 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatRippleModule} from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+
+import { environment } from '../environments/environment';
 
 import {MaterialModule} from './material.module';
 import {AppRoutingModule} from './app-routing.module';
+
+import {AuthInterceptorService} from './auth/auth-interceptor.service';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './page/chat/chat.component';
@@ -17,13 +25,9 @@ import {ContactViewComponent} from './page/contact/contact-view/contact-view.com
 import {ChatLoadingComponent} from './page/chat/chat-loading/chat-loading.component';
 import {HomeComponent} from './page/home/home.component';
 import {ChooseComponent} from './page/choose/choose.component';
-import {MatRippleModule} from '@angular/material';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import {HttpClientModule} from '@angular/common/http';
 import {RegisterComponent} from './auth/register/register.component';
 import {LoginComponent} from './auth/login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {LandingComponent} from './page/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     HomeComponent,
     ChooseComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,17 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    LoginComponent,
+    RegisterComponent
+  ]
 })
 export class AppModule { }
