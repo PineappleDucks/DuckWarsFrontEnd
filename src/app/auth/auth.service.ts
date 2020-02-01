@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
-import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
+import {BehaviorSubject, throwError} from 'rxjs';
 
 import {User} from '../shared/model/user';
 
@@ -25,18 +25,12 @@ export class AuthService {
   login(username: string, password: string) {
     console.log(this.api + this.loginRoute);
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-
-    return this.http.post<{ successful: boolean, message: string, token: string}>(
+    return this.http.post<{ successful: boolean, message: string, token: string }>(
       this.api + this.loginRoute,
       {
         username,
         password
-      }, httpOptions)
+      } )
       .pipe(
         catchError(this.handleError), tap(
           resData => {
@@ -101,6 +95,7 @@ export class AuthService {
       .pipe(
         catchError(this.handleError), tap(
           resData => {
+            console.log(resData);
             this.handleAuthentication(username, resData.token, 3600);
           }
         )

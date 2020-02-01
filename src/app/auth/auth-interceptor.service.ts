@@ -17,13 +17,23 @@ export class AuthInterceptorService implements HttpInterceptor {
     return this.authService.user.pipe(
       take(1),
       exhaustMap(user => {
-          if (!user) {
-            return next.handle(req);
-          }
-          const modifiedReq = req.clone({ headers: req.headers.append('jsessionid', user.token) });
+
+          // if (!user) {
+            // return next.handle(req);
+          // }
+
+          // console.log('jsessionid = ' + user.token);
+          // const modifiedReq = req.clone({ headers: req.headers.append('Set-Cookie', 'jsessionid=' + user.token) });
+
+
+          // const modifiedReq = req.clone({ headers: req.headers.append('jsessionid', user.token) , withCredentials: true });
+
+          const modifiedReq = req.clone( { withCredentials: true });
+
           return next.handle(modifiedReq);
         }
       ), catchError(err => {
+        console.log(err);
         if (!err.status) {
           const errorMessage = 'No Connection! Please try again later!';
 

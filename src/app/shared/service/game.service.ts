@@ -6,6 +6,7 @@ import {NotificationService} from './notification.service';
 import {LoadingIndicatorService} from './loading-indicator.service';
 import {GameHttpService} from './game-http.service';
 import {Message} from '../model/Message';
+import {AuthService} from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,22 +18,27 @@ export class GameService {
               private messageService: MessageService,
               private notificationService: NotificationService,
               private loadingIndicatorService: LoadingIndicatorService,
-              private gameHttpService: GameHttpService) { }
+              private gameHttpService: GameHttpService,
+              private authService: AuthService) { }
 
   // get current game state
   init() {
 
+    this.authService.user.subscribe( user => {
+      if (user && user.token)  {
+        this.initSetup();
+      }
+    });
   }
 
-
-  // initial choose scenario to start the game
   chooseScenario(side: string) {
-    this.initSetup(side);
+
+
   }
 
   // load the side and default stuff / saved game state
-  initSetup(side: string) {
-    this.gameHttpService.init(side).subscribe( data => {
+  initSetup() {
+    this.gameHttpService.init().subscribe( data => {
       console.log(data);
     }, error => {
       console.log(error);

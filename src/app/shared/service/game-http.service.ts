@@ -14,11 +14,9 @@ export class GameHttpService {
   constructor(private http: HttpClient) { }
 
   // github aktuellen stand
-  init(side: string) {
-    const params = new HttpParams().set('side', side);
-
+  init() {
     console.log('post: ' + this.api + this.initRoute);
-    return this.http.post(this.api + this.initRoute, { params });
+    return this.http.post(this.api + this.initRoute, {});
   }
 
   // github nachrichtSenden
