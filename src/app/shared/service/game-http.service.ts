@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Message} from '../model/Message';
 import {DialogOption} from '../model/DialogOption';
 import {Init} from '../model/Init';
+import {AuthService} from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class GameHttpService {
   private initRoute = environment.initRoute;
   private messageRoute = environment.messageRoute;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // github aktuellen stand
   init() {
@@ -22,8 +23,13 @@ export class GameHttpService {
   }
 
   // github nachrichtSenden
-  message(dialogOption: DialogOption) {
+  message(chatId: number, dialogOption: DialogOption) {
     console.log('post: ' + this.api + this.messageRoute);
-    return this.http.post<Message>(this.api + this.messageRoute, dialogOption);
+
+    const headers = new HttpHeaders({
+      chatId: chatId.toString()
+    });
+
+    return this.http.post<Message>(this.api + this.messageRoute, dialogOption, { headers });
   }
 }

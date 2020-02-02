@@ -1,7 +1,7 @@
 <div class="container">
   <!-- Our Message -->
   <div
-    *ngIf="message.author.firstName === ''"
+    *ngIf="message.author === null && message.text !== ''"
     class="outgoing_msg">
     <div class="sent_msg">
       <p style="white-space: pre-wrap;">{{ message.text }}</p>
@@ -10,7 +10,7 @@
 
   <!-- Message from the other person -->
   <div
-    *ngIf="message.author.firstName !== ''"
+    *ngIf="message.author && message.author.firstName !== ''"
     class="incoming_msg">
     <div class="incoming_msg_img">
       <img *ngIf="user.image" style="border-radius: 50%;" src="assets/images/profile-icon/{{ user.display.replace(' ', '') }}.png" alt="{{ user.display }}"></div>

@@ -42,4 +42,13 @@ export class NotificationService {
     this.notification.chat.set(chat, count);
     this.notificationChange.next(this.notification);
   }
+
+  resetNotifications() {
+    this.notification = {
+      count: 0,
+      chat: new Map<number, number>()
+    };
+
+    this.notificationChange.next(this.notification);
+  }
 }

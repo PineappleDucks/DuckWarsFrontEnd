@@ -12,7 +12,7 @@ import {AuthGuard} from './auth/auth.guard';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: {animation: 'Home', title: ''}},
 
-  { path: 'landing', component: LandingComponent, data: {animation: 'Layer1', title: 'PineApple Wars! Das Game'} },
+  { path: 'landing', component: LandingComponent, data: {animation: 'Layer1', title: 'DuckWars! Das Game'} },
 
   { path: 'chat', component: ContactComponent, data: {animation: 'Layer2', title: 'Chats'}, canActivate: [AuthGuard]},
   { path: 'chat/:id', component: ChatComponent, data: {animation: 'Layer3', title: 'Chat :name'}, canActivate: [AuthGuard]},

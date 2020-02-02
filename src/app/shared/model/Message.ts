@@ -4,7 +4,7 @@ import {DialogOption} from './DialogOption';
 export interface Message {
   messageId: number;
   text: string;
-  date: string;
+  date: Date;
 
   dialogOptions: DialogOption[];
 

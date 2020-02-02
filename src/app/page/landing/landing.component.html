@@ -17,5 +17,7 @@
       </div>
     </div>
   </div>
-  <div style="margin-left: 30px;" *ngIf="isLogin" (click)="onLogout()"><small>Abmelden</small></div>
+  <div style="margin-top: 15px;" *ngIf="isLogin"><button (click)="onLogout()" mat-raised-button>Abmelden</button></div>
+
+
 </div>

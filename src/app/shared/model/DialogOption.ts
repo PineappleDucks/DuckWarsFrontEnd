@@ -6,6 +6,8 @@ export interface DialogOption {
   answer: string;
   text: string;
 
+  chatId?: number;
+
 }
 
 /*
