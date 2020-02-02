@@ -1,8 +1,8 @@
 <div class="inbox_chat">
     <app-contact-entry
-      *ngFor="let contact of contacts; let index = index"
-      [contact]="contact"
-      (click)="onClick(index, contact.display)">
+      *ngFor="let chat of chats; let index = index"
+      [chat]="chat"
+      (click)="onClick(chat.chatId)">
 
     </app-contact-entry>
 </div>

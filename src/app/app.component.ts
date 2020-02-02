@@ -1,10 +1,7 @@
-import {Component, OnInit, isDevMode, OnDestroy, AfterViewChecked} from '@angular/core';
+import {Component, OnInit, OnDestroy, AfterViewChecked} from '@angular/core';
 
 import {slideInAnimation} from './shared/animation/slideIn.animation';
 
-import {ContactService} from './shared/service/contact.service';
-import {MessageService} from './shared/service/message.service';
-import {ActionsService} from './shared/service/actions.service';
 import {SwPush} from '@angular/service-worker';
 import {PushService} from './shared/service/push.service';
 import {LoadingIndicatorService} from './shared/service/loading-indicator.service';

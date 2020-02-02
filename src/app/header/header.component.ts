@@ -3,7 +3,6 @@ import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
 import {Subscription} from 'rxjs';
 
 import {NotificationService} from '../shared/service/notification.service';
-import {ContactService} from '../shared/service/contact.service';
 import {HelperService} from '../shared/service/helper.service';
 
 import {Notification} from '../shared/model/Notification';
@@ -28,7 +27,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private notificationService: NotificationService,
               public router: Router,
               private route: ActivatedRoute,
-              private contactService: ContactService,
               private helperService: HelperService,
               private authService: AuthService) { }
 
@@ -58,7 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onReset() {
-    this.contactService.setContactActive(null);
+
   }
 
   onCall() {

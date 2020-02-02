@@ -1,10 +1,11 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 
-import {Contact} from '../../../shared/model/Contact';
 import {Notification} from '../../../shared/model/Notification';
 
 import {NotificationService} from '../../../shared/service/notification.service';
+import {Chat} from '../../../shared/model/Chat';
+import {Message} from '../../../shared/model/Message';
 
 @Component({
   selector: 'app-contact-entry',
@@ -12,7 +13,7 @@ import {NotificationService} from '../../../shared/service/notification.service'
   styleUrls: ['./contact-entry.component.css']
 })
 export class ContactEntryComponent implements OnInit, OnDestroy {
-  @Input() contact: Contact;
+  @Input() chat: Chat;
 
   notification: Notification;
   private notificationSub: Subscription;
@@ -20,6 +21,7 @@ export class ContactEntryComponent implements OnInit, OnDestroy {
   constructor(private notificationService: NotificationService) { }
 
   ngOnInit() {
+    console.log(this.chat);
     this.notificationSub = this.notificationService.notificationChange.subscribe((notification: Notification) => {
       this.notification = notification;
     });
@@ -30,16 +32,29 @@ export class ContactEntryComponent implements OnInit, OnDestroy {
   }
 
   getLastMessage() {
-    if (this.contact.messages) {
-      const index = this.contact.messages.length - 1;
-      return this.contact.messages[index];
+    if (this.chat.messageList) {
+      const index = this.chat.messageList.length - 1;
+      const message = this.chat.messageList[index];
+
+      if (message.text.length > 50) {
+        const messageCopy: Message = {
+          messageId: message.messageId,
+          text: message.text.slice(0, 50) + ' ...',
+          date: message.date,
+          dialogOptions: message.dialogOptions,
+          author: message.author
+        };
+
+        return messageCopy;
+      }
+
+      return message;
     }
 
     return null;
   }
 
-  getNotification(contact: string) {
-    return this.notification.contact.get(contact) !== 0 ? this.notification.contact.get(contact) : null;
+  getNotification(chat: number) {
+    return this.notification.chat.get(chat) !== 0 ? this.notification.chat.get(chat) : null;
   }
-
 }

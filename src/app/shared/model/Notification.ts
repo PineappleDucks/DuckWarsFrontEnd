@@ -1,4 +1,4 @@
 export interface Notification {
   count: number;
-  contact: Map<string, number>;
+  chat: Map<number, number>;
 }

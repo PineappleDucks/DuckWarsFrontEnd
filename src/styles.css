@@ -52,9 +52,9 @@
   text-align: center;
   color: #ffd54e;
   text-shadow: 4px 4px #000000;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
-  padding: 100px 60px;
+  padding: 20px 20px;
 }
 
 mat-form-field {
@@ -347,4 +347,12 @@ mat-toolbar {
 
 .background-chat {
   background-image: url('assets/images/background/background-chat.jpg');
+}
+
+.background-jedi {
+  background-image: url('assets/images/background/background-jedi.jpg');
+}
+
+.background-sith {
+  background-image: url('assets/images/background/background-sith.jpg');
 }

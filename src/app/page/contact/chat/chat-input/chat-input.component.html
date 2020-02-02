@@ -2,8 +2,8 @@
   <div class="input_msg_write vh-flex-row">
     <mat-chip-list class="msg_send_btn">
       <mat-chip
-        *ngFor="let action of actions; let index : index"
-        (click)="onClickAction(action, index)">{{ action.display }}</mat-chip>
+        *ngFor="let option of dialogOption"
+        (click)="onClickAction(option.id)">{{option.text }}</mat-chip>
     </mat-chip-list>
     <mat-icon (click)="onSend()" style="cursor: pointer" matRipple matRippleUnbounded="true" matRippleCentered="true">send</mat-icon>
   </div>

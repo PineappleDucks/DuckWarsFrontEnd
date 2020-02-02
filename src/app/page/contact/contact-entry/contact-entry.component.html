@@ -1,19 +1,19 @@
-<div class="chat_list"
-     [class.active_chat]="contact.isActive">
+<div class="chat_list"><!--
+     [class.active_chat]="chat.isActive"-->
   <div class="chat_people">
     <div class="chat_img">
       <img
         style="border-radius: 50%;"
-        *ngIf="contact.image" src="{{ contact.image }}" alt="{{ contact.firstName + ' ' + contact.lastName }}">
+        *ngIf="chat.contact.firstName" src="assets/images/profile-icon/{{ chat.contact.firstName }}.png" alt="{{ chat.contact.firstName }}">
     </div>
     <div class="chat_ib">
-      <h5>{{ contact.firstName + ' ' + contact.lastName }}
+      <h5>{{ chat.contact.firstName }} {{ chat.contact.lastName }}
         <span
           class="chat_date"
           *ngIf="getLastMessage()">{{ getLastMessage().date | date:'HH:mm' }}</span>
       </h5>
       <p *ngIf="getLastMessage()"
-         [matBadge]="getNotification(contact.display)"
+         [matBadge]="getNotification(chat.chatId)"
          matBadgePosition="above before"
          matBadgeColor="warn"
          matBadgeOverlap="true">{{ getLastMessage().text }}</p>

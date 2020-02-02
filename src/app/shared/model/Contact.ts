@@ -1,14 +1,17 @@
-import {Message} from './Message';
-import {Action} from './Action';
-
 export interface Contact {
-  display: string;
+  id: number;
+
   firstName: string;
   lastName: string;
 
-  isActive?: boolean;
-  messages?: Message[];
-  actions?: Action[];
-
-  image?: string;
+  image: string;
 }
+
+/*
+  contact: {
+      firstname: string,
+      id: number,
+      image: string,
+      lastname: string
+    },
+ */

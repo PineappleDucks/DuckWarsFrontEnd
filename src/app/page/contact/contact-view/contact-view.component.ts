@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Contact} from '../../../shared/model/Contact';
-import {ContactService} from '../../../shared/service/contact.service';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {GameService} from '../../../shared/service/game.service';
+import {Chat} from '../../../shared/model/Chat';
 
 @Component({
   selector: 'app-contact-view',
@@ -10,26 +10,22 @@ import {Router} from '@angular/router';
   styleUrls: ['./contact-view.component.css']
 })
 export class ContactViewComponent implements OnInit, OnDestroy {
-  contacts: Contact[];
-  private contactSub: Subscription;
+  chats: Chat[];
+  private sub: Subscription;
 
-  constructor(private contactService: ContactService, private router: Router) { }
+  constructor(private gameService: GameService, private router: Router) { }
 
   ngOnInit() {
-    this.contacts = this.contactService.getContacts();
-    this.contactSub = this.contactService.contactsChange.subscribe( contacts => {
-      this.contacts = contacts;
+    this.sub = this.gameService.dataChanges.subscribe( data => {
+      this.chats = this.gameService.getChats();
     });
   }
 
   ngOnDestroy(): void {
-    this.contactSub.unsubscribe();
+    this.sub.unsubscribe();
   }
 
-  onClick(index: number, contact: string) {
-    this.contactService.setContactActive(index);
-
-    this.router.navigate(['/chat/' + contact]).then();
+  onClick(id: number) {
+    this.router.navigate(['/chat/', id]).then();
   }
-
 }

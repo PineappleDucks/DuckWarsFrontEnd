@@ -1,10 +1,11 @@
 import {AfterViewChecked, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 
-import {LoadingService} from '../../../shared/service/loading.service';
+import {LoadingService} from '../../../../shared/service/loading.service';
 
-import {Contact} from '../../../shared/model/Contact';
-import {NotificationService} from '../../../shared/service/notification.service';
+import {Contact} from '../../../../shared/model/Contact';
+import {NotificationService} from '../../../../shared/service/notification.service';
+import {Chat} from '../../../../shared/model/Chat';
 
 @Component({
   selector: 'app-chat-view',
@@ -12,28 +13,18 @@ import {NotificationService} from '../../../shared/service/notification.service'
   styleUrls: ['./chat-view.component.css']
 })
 export class ChatViewComponent implements OnInit, OnDestroy, AfterViewChecked {
-  isLoading: boolean;
 
-  private loadingSub: Subscription;
-
-  @Input() contact: Contact;
+  @Input() chat: Chat;
   @ViewChild('scroll', {static: false}) private myScrollContainer: ElementRef;
 
   constructor(private loadingService: LoadingService,
               private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.isLoading = this.loadingService.isLoading();
-
-    this.loadingSub = this.loadingService.isLoadingChange.subscribe( state => {
-      this.isLoading = state;
-    });
-
-    this.notificationService.resetNotification(this.contact.display);
+    this.notificationService.resetNotification(this.chat.chatId);
   }
 
   ngOnDestroy(): void {
-    this.loadingSub.unsubscribe();
   }
 
   ngAfterViewChecked(): void {
@@ -46,5 +37,9 @@ export class ChatViewComponent implements OnInit, OnDestroy, AfterViewChecked {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  getDialogOptions() {
+    return this.chat.messageList[this.chat.messageList.length - 1 ].dialogOptions;
   }
 }
