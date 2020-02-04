@@ -22,6 +22,8 @@ export class GameService {
   private data: Init;
   private activeSide = false;
 
+  loadingChanges = new BehaviorSubject<boolean>(false);
+
   dataChanges = new BehaviorSubject<Init>(this.data);
 
   // get current game state
@@ -38,14 +40,6 @@ export class GameService {
 
     this.notificationService.resetNotifications();
 
-    if (this.data.chats.length === 2) {
-      if (this.activeSide) {
-        this.notificationService.addNotification(2);
-      } else {
-        this.notificationService.addNotification(1);
-      }
-    }
-
     this.dataChanges.next(this.data);
   }
 
@@ -55,14 +49,6 @@ export class GameService {
       this.data = data;
 
       this.notificationService.resetNotifications();
-
-      if (this.data.chats.length === 2) {
-        if (this.activeSide) {
-          this.notificationService.addNotification(2);
-        } else {
-          this.notificationService.addNotification(1);
-        }
-      }
 
       this.dataChanges.next(this.data);
     }, error => {
@@ -85,29 +71,58 @@ export class GameService {
         return;
       }
 
-      console.log(data);
+      console.log('message: ' + JSON.stringify(data));
 
-      const chat = this.data.chats.find(element => element.contact.id = data.author.id);
+      let chat = this.data.chats.find(element => element.contact.id === data.author.id);
 
-      console.log(chat);
+      console.log('chat: ' + JSON.stringify(chat));
+
+      if (!chat) {
+        console.log('create new chat: ' + JSON.stringify({
+          chatId: this.getNextFreeId(),
+          backgroundId: null,
+          jediSide: this.activeSide,
+          messageList: [],
+          contact: data.author
+        }));
+        this.data.chats.push( {
+          chatId: this.getNextFreeId(),
+          backgroundId: null,
+          jediSide: this.activeSide,
+          messageList: [],
+          contact: data.author
+        });
+
+        chat = this.data.chats.find(element => element.contact.id === data.author.id);
+
+        this.notificationService.addChat(chat.chatId);
+      }
+
+      setTimeout( () => {
+        if (chat.chatId === chatId) {
+          this.loadingChanges.next(true);
+        }
+      }, 100);
 
       setTimeout( () => {
         console.log('timeout');
 
-        console.log(chat);
         chat.messageList.push(data);
-        console.log(chat);
 
-        this.notificationService.addNotification(chatId);
+        this.loadingChanges.next(false);
+
+        this.notificationService.addNotification(chat.chatId);
 
         if (data.dialogOptions) {
           data.dialogOptions.forEach(option => {
             if (option.text === '') {
-              this.messageRoute(chatId, option);
+              this.messageRoute(chat.chatId, option);
             }
           });
         }
         this.dataChanges.next(this.data);
+
+        console.log('message added to chat: ' + chat.chatId);
       }, 200 + data.text.length * 36);
     }, error => {
       console.log(error);
@@ -120,5 +135,15 @@ export class GameService {
 
   getChat(chatId: number) {
     return this.data.chats.find(element => element.chatId === chatId);
+  }
+
+  getNextFreeId() {
+    let i = 0;
+
+    this.data.chats.forEach( data => {
+      i++;
+    });
+
+    return i + 1;
   }
 }

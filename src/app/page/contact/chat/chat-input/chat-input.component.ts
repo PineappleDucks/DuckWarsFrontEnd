@@ -25,7 +25,8 @@ export class ChatInputComponent implements OnInit, OnDestroy {
   }
 
   onClickAction(id) {
-    this.gameService.messageRoute(this.chatId, this.dialogOption.find(element => element.id = id));
+    console.log('selected answerId: ' + id);
+    this.gameService.messageRoute(this.chatId, this.dialogOption.find(element => element.id === id));
   }
 
   onSend() {

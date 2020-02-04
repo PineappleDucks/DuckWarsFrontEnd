@@ -18,6 +18,9 @@ export class LandingComponent implements OnInit, OnDestroy {
   isLogin = false;
   gameActive = true;
 
+  dialogRegister = false;
+  dialogLogin = false;
+
   private sub: Subscription;
 
   constructor(private authService: AuthService, public dialog: MatDialog, private router: Router) {
@@ -38,6 +41,12 @@ export class LandingComponent implements OnInit, OnDestroy {
   }
 
   openLoginDialog() {
+    if (this.dialogLogin) {
+      return;
+    }
+
+    this.dialogLogin = true;
+
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '500px',
       data: {},
@@ -50,10 +59,18 @@ export class LandingComponent implements OnInit, OnDestroy {
       } else if (result === 'register') {
         this.openRegisterDialog();
       }
+
+      this.dialogLogin = false;
     });
   }
 
   openRegisterDialog() {
+    if (this.dialogRegister) {
+      return;
+    }
+
+    this.dialogRegister = true;
+
     const dialogRef = this.dialog.open(RegisterComponent, {
       width: '500px',
       data: {},
@@ -66,6 +83,8 @@ export class LandingComponent implements OnInit, OnDestroy {
       } else if (result === 'login') {
         this.openLoginDialog();
       }
+
+      this.dialogRegister = false;
     });
   }
 

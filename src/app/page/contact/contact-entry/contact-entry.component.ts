@@ -55,6 +55,16 @@ export class ContactEntryComponent implements OnInit, OnDestroy {
   }
 
   getNotification(chat: number) {
-    return this.notification.chat.get(chat) !== 0 ? this.notification.chat.get(chat) : null;
+    console.log(chat);
+    console.log(this.notification.chat);
+
+    const value = this.notification.chat.get(chat);
+
+    if (value) {
+      console.log(value);
+      return value;
+    }
+
+    return null;
   }
 }

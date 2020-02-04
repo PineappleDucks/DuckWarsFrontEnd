@@ -2,7 +2,10 @@
   <div class="msg_history vh-correct vh-flex">
     <div style="overflow-x: hidden; overflow-y: auto; margin-bottom: 10px; margin-top: 10px; flex-grow: 1000" #scroll>
       <app-chat-message *ngFor="let message of chat.messageList" [message]="message" [user]="{ display: chat.contact.firstName, image: chat.contact.firstName } "></app-chat-message>
+
+      <app-chat-loading></app-chat-loading>
     </div>
+
 
     <app-chat-input [chatId]="chat.chatId" [dialogOption]="getDialogOptions()"></app-chat-input>
   </div>

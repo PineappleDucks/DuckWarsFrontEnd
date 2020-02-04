@@ -38,6 +38,9 @@ export class AuthInterceptorService implements HttpInterceptor {
           const errorMessage = 'No Connection! Please try again later!';
 
           this.helperService.openSnackBar(errorMessage, 'Close');
+        } else if (err.status === 401) {
+          this.authService.logout();
+          return throwError(err);
         } else {
           return throwError(err);
         }
